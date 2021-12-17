@@ -1,0 +1,88 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<script>
+  
+var mondai=["律は何を定めた決まりか。","令は何を定めた決まりか。","大宝律令が作られたのは何年か。","大宝律令はどこの法律にならって作られたか。","律令国家を運営する貴族になったのはどのような人たちか。","710年、奈良盆地の北部に作られた都を何というか。","天武天皇の時代から作られていた日本最初の銅銭を何というか。","708年に発行された貨幣を何というか。","国ごとに置かれた役所を何というか。","国に都から派遣された役人を何というか。","地方の豪族が任命され、国司の指揮のもと政治を行った役人を何というか。","九州地方の政治や外交、防衛を行った役所を何というか。","都と地方を結ぶ道路に置かれ、乗りつぎ用の馬が用意されていた施設を何というか。","8世紀前半の日本の人口は約何人か。","戸籍は何年ごとに作られたか。","戸籍に登録されたすべての人々に口分田を与え、その人が死ぬと国に返すことを定めた法を何というか。","人々が口分田の面積に応じて負担した税を何というか。","布や特産物を都まで運んで納める税を何というか。","労役の代わりに布を納める税を何というか。","九州北部などの防備にあたった兵士を何というか。","新しく開墾した土地の私有を認め、子孫に伝えたり売買できるとした法を何というか。","貴族や寺院などの有力者の私有地はのちに何と呼ばれるようになるか。"];
+var kotae=["刑罰","政治","701年","唐","近畿地方の有力な豪族","平安京","富本銭","和同開珎","国府","国司","群司","太宰府","駅","450万人","6年ごと","班田収授法","租","調","庸","防人","墾田永年私財法","荘園"];
+var nan=0;
+var jun_2=0;
+var jun=false;
+function jun_b(){
+  jun=true;
+  document.getElementById("mon").innerHTML=`<samp id="mon">${ mondai[0]}</samp>`
+}
+function ab(){
+   var a= Math.floor(Math.random()*mondai.length);
+ nan=a};
+var seikai=0;
+var start_=false;
+    function start(){
+        start_=true;
+      //  console.log("a")
+        ab();
+       mon()
+      // document.getElementById("start").remove();
+    }
+  function yomikomi(){
+    document.getElementById("mondai_yomikomi").value;
+  }
+function shutudai (){
+  
+   
+  var b =  mondai[nan];
+ return b;
+}
+function b(){
+  document.getElementById("seikai").innerHTML=`<samp id="seikai">正解数:${seikai}`
+
+}
+function saimon(){
+
+  document.getElementById("marubatu").innerHTML=`<samp id="marubatu">-</samp>`;
+  document.getElementById("kotaeran").innerHTML=`<samp id="kotaeran></samp>`
+if(jun===true){
+  jun_2=jun_2+1
+nan=jun_2
+  if(jun_2===mondai.length){
+    nan=0
+    jun_2=0
+    document.getElementById("mon").innerHTML=`<samp id="mon">終了 ${seikai+"/"+mondai.length} 正答率${seikai/mondai.length}</samp>`
+  }else{
+    document.getElementById("mon").innerHTML=`"<samp id="mon">${mondai[jun_2]}</samp>"`
+}
+}else {ab();
+mon();}
+ document.getElementById("kaito").value="";
+}
+    function  mon(){
+       
+  document.getElementById("mon").innerHTML=`<samp id="mon">${ shutudai()}</samp>`;
+    }
+    function q_a(){
+       var text=document.getElementById("kaito");
+       var value=text.value;
+       document.getElementById("kotaeran").innerHTML=`<samp id="kotaeran ">${kotae[nan]}</samp>`;
+       if(value===kotae[nan]){
+            seikai=seikai+1;
+        b()
+       document.getElementById("marubatu").innerHTML=`<samp id="marubatu">⭕</samp>`;
+       setTimeout(saimon,1000);
+   
+}else        document.getElementById("marubatu").innerHTML=`<samp id="marubatu">❌</samp>`;
+setTimeout(saimon,1000);
+    }
+    
+</script>
+</head>
+<body>
+  <h1 style="color: red;">quiz</h1>
+  <input type="button" value="ランダムにplay" id="strat" onclick="start()"><input type="button" onclick="jun_b()" value="順番にplay"><br>
+  <samp id="mon">問題文がここに来ます</samp><br><div style="color: red;"><samp id="kotaeran"></samp></div><br>
+  <input type="text" id="kaito"><samp id="marubatu"></samp><br><input type="button" value="決定" onclick="q_a()">
+<samp id="seikai">正解数:0</samp>
+<!-- <div><input type="text" id="mondai_yomikomi"></div> -->
+
+</body></html>
